@@ -36,7 +36,7 @@ public class Tree {
         }
     }
     public void additteam(int x){
-        System.out.print("Gib den Teamnamen ein!");
+        System.out.print("Gib den Teamnamen für team " + x + " ein!");
         teamlist[x].changeTeamname(scanner.nextLine());
         System.out.print("Gib einen Kürze mit 3 Buchstaben ein!");
         teamlist[x].changeShortname(scanner.nextLine());
@@ -51,4 +51,10 @@ public class Tree {
     public void removepoints(int x, int point){
         teamlist[x].removePoint(point);
     }
+    
+    public void Round1(){
+    
+    
+    }
+    
 } //by Calypsomon
