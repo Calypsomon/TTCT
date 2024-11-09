@@ -4,6 +4,7 @@ public class Team {
     String[] players;
     int Points;
     int teamsize;
+    int Swissplace;
 
     public Team(String name,String shortname ,int teamsize){
         this.name = name;
@@ -16,6 +17,12 @@ public class Team {
     }
     public void getTeamname(){
         System.out.println("Team name: " + name + "/ " + shortname);
+    }
+    public String getshortname(){
+        return shortname;
+    }
+    public String getname(){
+        return name;
     }
     public void getPlayers(){
         for(int i = 0; i < players.length; i++){

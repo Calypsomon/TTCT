@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Tree {
     Team[]  teamlist;
+    match[] matchlist;
     int teamcount;
     Scanner scanner = new Scanner(System.in);
     public Tree() {
@@ -37,12 +38,12 @@ public class Tree {
     }
     public void additteam(int x){
         System.out.print("Gib den Teamnamen für team " + x + " ein!");
-        teamlist[x].changeTeamname(scanner.nextLine());
+        teamlist[x-1].changeTeamname(scanner.nextLine());
         System.out.print("Gib einen Kürze mit 3 Buchstaben ein!");
-        teamlist[x].changeShortname(scanner.nextLine());
-        for(int i = 0; i < teamlist[x].getTeamsize(); i++){
+        teamlist[x-1].changeShortname(scanner.nextLine());
+        for(int i = 0; i < teamlist[x-1].getTeamsize(); i++){
             System.out.print("Gib den Namen von Spieler " + (i+1) + " ein!");
-            teamlist[x].addplayer(i,scanner.nextLine());
+            teamlist[x-1].addplayer(i,scanner.nextLine());
         }
     }
     public void addPoint(int x, int point){
@@ -51,7 +52,15 @@ public class Tree {
     public void removepoints(int x, int point){
         teamlist[x].removePoint(point);
     }
-    
+    public void team1wins(int x){
+        matchlist[x].team1wins();
+        matchlist[x].finishmatch();
+    }
+    public void team2wins(int x){
+        matchlist[x].team2wins();
+        matchlist[x].finishmatch();
+
+    }
     public void FFA(){
     /*if (teamcount%2 != 0) {
         Team hTeam = new Team("FreeWin","WIN",teamlist[0].getTeamsize());
@@ -74,26 +83,27 @@ public class Tree {
             Team hteam = new Team("FreeWin187","WIN",0);
             int matchcode = 0;
             int zähler = teamcount - teamcount/2;
-            int a,i, y= 1, x= 2;
-            match[] Matches = new match[zähler];
+            int a,i, y= 0, x= 1;
+            matchlist = new match[zähler];
             
                     System.out.println("Runde 1 \n");
             for (a= 0;a<zähler;a++){
             matchcode ++;
-            if (x<=teamcount){
-        	    Matches[matchcode-1] = new match(teamlist[y],teamlist[x],matchcode);
+            if (x<teamcount){
+        	    matchlist[matchcode-1] = new match(teamlist[y],teamlist[x],matchcode);
             } else {
-                Matches[matchcode-1] = new match(teamlist[y],hteam,matchcode);
+                matchlist[matchcode-1] = new match(teamlist[y],hteam,matchcode);
             }
+            matchlist[matchcode-1].getmatch();
             y = y + 2;
             x = x + 2;
         }
             for (i=1;i<berechneRunden(teamcount);i++){
                     boolean allFinished = false;
-                    while (!allFinished) {
+                    while (allFinished=false) {
                         allFinished = true; 
-                        for (int f = 0; f < Matches.length; f++) {
-                            if (!Matches[f].finished()) {  // Falls ein Match noch nicht fertig ist
+                        for (int f = 0; f < matchlist.length; f++) {
+                            if (matchlist[f].finished()==false) {  // Falls ein Match noch nicht fertig ist
                                 allFinished = false;  // Setze allFinished auf false und verlasse die Schleife
                                 break;
                             }
@@ -110,15 +120,16 @@ public class Tree {
                     }
                 
                 zähler = zähler/2;
-                y=1;x=2;
+                y=0;x=1;
                 match[] Matches2= new match[zähler];
                 for (a= 0;a<zähler;a++){ 
                     matchcode ++;
-                    Matches2[a] = new match(Matches[y].getWinner(),Matches[x].getWinner(),matchcode);
+                    Matches2[a] = new match(matchlist[y].getWinner(),matchlist[x].getWinner(),matchcode);
                     y = y + 2;
                     x = x + 2;
+                    Matches2[a].getmatch();
                 }
-                Matches = Matches2;
+                matchlist = Matches2;
             }
     }
 
