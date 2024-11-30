@@ -17,10 +17,6 @@ if (team2.getname() =="FreeWin187"){
 team1wins();
 finishmatch();
 }
-if (team1.getname() =="FreeWin187"){
-    team2wins();
-    finishmatch();
-    }
 }
 public void getmatch(){
     System.out.println("" + team1.getshortname() + " vs " + team2.getshortname()+ "//" + matchcode);
@@ -33,21 +29,39 @@ public void team2wins(){
     resultteam1 = 0;
     resultteam2 = 2;
 }
+public int getmatchcode(){
+return matchcode;
+}
 public void finishmatch(){
     team1.addPoint(resultteam1);
     team2.addPoint(resultteam2);
     if (resultteam1 > resultteam2){
         Gewinnerteam = team1;
         Verliererteam = team2;
+    } else {
+        Gewinnerteam = team2;
+        Verliererteam = team1;
+    }
         matchcode = matchcode + 100;
         finischt = true;
-    }
 }
 public Team getWinner(){
-    return Gewinnerteam;
-}
+    if (Gewinnerteam == team1){
+    return team1;
+    } else {
+    return team2;
+}}
 public Team getLooser(){
-    return Verliererteam;
+    if (Verliererteam == team1){
+        return team1;
+        } else {
+        return team2;
+    }}
+public String getname1(){
+    return team1.getname();
+}
+public String getname2(){
+    return team2.getname();
 }
 public boolean finished(){
 return finischt;

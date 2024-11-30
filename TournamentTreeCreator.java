@@ -5,10 +5,8 @@ public class TournamentTreeCreator {
         Tree csWingman= new Tree();
         csWingman.creattopf(7,2);
         csWingman.Swiss();
-        csWingman.team1wins(0);
-        csWingman.team1wins(1);
-        csWingman.team1wins(2);
-        csWingman.getteams();
+        System.out.println("hello");
         csWingman.leaderboard();
+        csWingman.getteams();
     }
 }

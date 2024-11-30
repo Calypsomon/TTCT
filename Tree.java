@@ -59,7 +59,9 @@ public class Tree {
     public void team2wins(int x){
         matchlist[x].team2wins();
         matchlist[x].finishmatch();
-
+    }
+    public void getmatch(int x){
+        matchlist[x].getmatch();
     }
     public void FFA(){
     /*if (teamcount%2 != 0) {
@@ -86,7 +88,7 @@ public class Tree {
             int a,i, y= 0, x= 1;
             matchlist = new match[zähler];
             
-                    System.out.println("Runde 1 \n");
+                    System.out.println("Runde 1 \n");       //Create the first round
             for (a= 0;a<zähler;a++){
             matchcode ++;
             if (x<teamcount){
@@ -98,27 +100,23 @@ public class Tree {
             y = y + 2;
             x = x + 2;
         }
-            for (i=1;i<berechneRunden(teamcount);i++){
-                    boolean allFinished = false;
-                    while (allFinished=false) {
-                        allFinished = true; 
-                        for (int f = 0; f < matchlist.length; f++) {
-                            if (matchlist[f].finished()==false) {  // Falls ein Match noch nicht fertig ist
-                                allFinished = false;  // Setze allFinished auf false und verlasse die Schleife
-                                break;
-                            }
-                        }
-                
-                        if (!allFinished) {
-                            try {
-                                Thread.sleep(5000);  // Warte 5 Sekunden
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();  // Falls der Thread unterbrochen wird, die Schleife verlassen
-                                break;
-                            }
-                        }
+            for (i=0;i<berechneRunden(teamcount);i++){              //desides who won the matches 1 by 1
+                int abfragen =0;
+                while (abfragen< matchlist.length){
+                    System.out.println("Wer hat match "+ (matchlist[abfragen].getmatchcode()) + " gewonnen?");
+                    System.out.println("1 = " + matchlist[abfragen].getname1());
+                    System.out.println("2 = " + matchlist[abfragen].getname2());
+                    int d = scanner.nextInt();
+                    if (d == 1){
+                        matchlist[abfragen].team1wins();
+                    } else if (d == 2){
+                        matchlist[abfragen].team2wins();
+                    }
+                    matchlist[abfragen].finishmatch();
+                    abfragen ++;
                     }
                 
+                System.out.println("\n Runde " + (i+2) + "\n");
                 zähler = zähler/2;
                 y=0;x=1;
                 match[] Matches2= new match[zähler];
@@ -130,7 +128,8 @@ public class Tree {
                     Matches2[a].getmatch();
                 }
                 matchlist = Matches2;
-            }
+            }  
+        System.out.println("\n Das Turnier ist vorbei!");
     }
 
     int berechneRunden(int teilnehmer) {
