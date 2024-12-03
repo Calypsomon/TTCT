@@ -7,7 +7,7 @@ public class Tree {
     public Tree() {
     }
 
-    public void creattopf(int teamcount,int teamplayers){
+    public void creattopf(int teamcount,int teamplayers){           //erstellt einen raum mit allen Teams und deren anzahl
         this.teamcount = teamcount;
         this.teamlist = new Team[teamcount];
         for(int i = 0; i < teamcount; i++){
@@ -63,7 +63,7 @@ public class Tree {
     public void getmatch(int x){
         matchlist[x].getmatch();
     }
-    public void FFA(){
+    public void FFA(){                                      // noch nicht fertig soll ein FFa Tournament mit runden werden.
     /*if (teamcount%2 != 0) {
         Team hTeam = new Team("FreeWin","WIN",teamlist[0].getTeamsize());
     }*/
@@ -80,7 +80,7 @@ public class Tree {
     match[matchcode] = new match(teamlist[x],teamlist[y],matchcode);
     }
     }}
-    public void Swiss(){
+    public void Swiss(){                                                        //packt alle Teams eines Raumes in ein Swiss tournament
            
             Team hteam = new Team("FreeWin187","WIN",0);
             int matchcode = 0;
