@@ -9,7 +9,7 @@ public class match {
     int resultteam1;
     int resultteam2;
     boolean finischt = false;
-public match (Team team1, Team team2, int matchcode) {   
+public match (Team team1, Team team2, int matchcode) {          //Construcor erstellt mit 2 teams ein match mit dem matchcode
 this.team1 = team1;
 this.team2 = team2;
 this.matchcode = matchcode;
@@ -32,7 +32,7 @@ public void team2wins(){
 public int getmatchcode(){
 return matchcode;
 }
-public void finishmatch(){
+public void finishmatch(){              //macht das ausgewählte team zum Winner/verlierer, setzt matchcode hoch.
     team1.addPoint(resultteam1);
     team2.addPoint(resultteam2);
     if (resultteam1 > resultteam2){
